@@ -1,0 +1,13 @@
+<div class="contents row">
+  <%= form_tag("/tweets/#{@tweet.id}", method: :patch ) do %>
+    <h3>
+      編集する
+    </h3>
+    <input placeholder="Image Url" type="text" name="image" value="<%= @tweet.image %>" autofocus="true">
+    <!-- フォームに初めから入っている値を表示するのに@tweetを利用している。input要素のうちtype属性がtextのものはvalue属性に設定した値が初期値になる -->
+    <textarea cols="30" name="text" placeholder="text" rows="10"><%= @tweet.text %></textarea>
+    <!-- textarea要素は、タグで囲んだ部分の中身が初期値になる -->
+
+    <input type="submit" value="SENT">
+  <% end %>
+</div>
