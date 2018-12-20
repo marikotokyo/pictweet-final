@@ -1,28 +1,8 @@
 <div class="contents row">
   <% @tweets.each do |tweet| %>
-    <div class="content_post" style="background-image: url(<%= tweet.image %>);">
-      <% if user_signed_in? && current_user.id == tweet.user_id %>
-       <!-- 自分が投稿したツイートでないと削除ボタンが表示されないようにする -->
-       <!-- if文は左から判定されるのでuser_singed_inがfalseならその時点で削除ボタンは表示されなくなる -->
-        <div class="more">
-          <span><%= image_tag 'arrow_top.png' %></span>
-          <ul class="more_list">
-            <li>
-              <%= link_to '編集', "/tweets/#{tweet.id}/edit", method: :get %>
-            </li>
-            <li>
-              <%= link_to '削除', "/tweets/#{tweet.id}", method: :delete %>
-            </li>
-          </ul>
-        </div>
-      <% end %>
-        <%= simple_format(tweet.text) %>
-      <span class="name">
-        <a href="/users/<%= tweet.user_id %>">
-          <span>投稿者</span><%= tweet.user.nickname %>
-        </a>
-      </span>
-    </div>
+    <%= render partial: "tweet", locals: { tweet: tweet } %>
   <% end %>
   <%= paginate(@tweets) %>
 </div>
+
+<!-- renderメソッドのlocalsオプション{ tweet: tweet } の右側の tweet はeachメソッド内の変数としてのtweetでtweetのインスタンスのこと。左側の tweet は部分テンプレート内での変数の名前を表している。 -->

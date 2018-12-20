@@ -1,9 +1,9 @@
 <div class="contents row" >
   <p><%= @nickname %>さんの投稿一覧</p>
   <% @tweets.each do |tweet| %>
-    <div class="content_post" style="background-image: url(<%= tweet.image %>);">
-      <%= simple_format(tweet.text) %>
-    </div>
+    <%= render partial: "tweets/tweet", locals: { tweet: tweet } %>
   <% end %>
   <%= paginate(@tweets) %>
 </div>
+
+<!-- 違うフォルダ内の部分テンプレートを呼び出すときは tweets/tweetのようにどのフォルダの部分テンプレートを使用しているかを明示的に記載する -->
