@@ -1,11 +1,16 @@
 <div class="contents row">
   <div class="container">
+    <!-- railsではセキュリティの観点からhtmlのformタグだけで作成したフォームは推奨されていないのでヘルパーメソッドのform_tagで作成 -->
     <%= form_tag('/tweets', method: :post) do %>
+    <!-- 第一引数にformの送信ボタンを押した際のリクエストのパス、第二引数にhttpメソッドを指定。/tweetsに
+    postメソッドで情報を送信するよ -->
       <h3>
         投稿する
       </h3>
       <input placeholder="Image URL" type="text" name="image" autofocus="true">
+      <!-- name属性に注目！画像のURLはimageというキーと一緒に送信される -->
       <textarea placeholder="text" name="text" cols="30" rows="10"></textarea>
+      <!-- ツイートの本分はtextというキーと一緒に送信される -->
       <input type="submit" value="SENT">
     <% end %>
   </div>

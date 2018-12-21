@@ -1,10 +1,12 @@
+# $ rails g controller commentsで作成された
 class CommentsController < ApplicationController
   def create
     @comment = Comment.create(text: params[:text], tweet_id: params[:tweet_id], user_id: current_user.id)
-    redirect_to "/tweets/#{@comment.tweet.id}"   #コメントと結びつくツイートの詳細画面に遷移する
+    redirect_to "/tweets/#{@comment.tweet.id}"
+    #新しくビューファイルを作るのではなく、すでにあるツイートの詳細ページに戻るようにする。コメントと結びつくツイートの詳細画面に遷移する。
   end
 
-  private
+  private #ストロングパラメータを指定し必要なparamsだけを取ってくる
   def comment_params
     params.permit(:text, :tweet_id)
   end

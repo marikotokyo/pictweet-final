@@ -3,24 +3,30 @@
     <span><%= image_tag 'arrow_top.png' %></span>
     <ul class="more_list">
       <li>
+        <!-- ツイートの詳細画面を呼び出すためのルーティング -->
         <%= link_to '詳細', "/tweets/#{tweet.id}", method: :get %>
       </li>
       <% if user_signed_in? && current_user.id == tweet.user_id %>
  <!-- 自分が投稿したツイートでないと削除ボタンが表示されないようにする -->
+ <!-- <% if current_user.id == tweet.user_id %>だけだと、ログインしていないときのcurrent_userはnillなのでそれに対して.idとしてもそんなメソッドないよというエラーになる。そのためにまずユーザーがサインインしているか確かめる -->
  <!-- if文は左から判定されるのでuser_singed_inがfalseならその時点で削除ボタンは表示されなくなる -->
       <li>
         <%= link_to '編集', "/tweets/#{tweet.id}/edit", method: :get %>
+        <!-- ここでも編集したいツイートのidを入れているよ -->
       </li>
       <li>
         <%= link_to '削除', "/tweets/#{tweet.id}", method: :delete %>
+        <!-- パスに削除したいツイートのidを入れることによって、削除したいツイートをコントローラ上で取得できる -->
       </li>
     <% end %>
     </ul>
   </div>
   <%= simple_format(tweet.text) %>
+  <!-- 改行に<br/>を付与、文字列を<p>で括るヘルパーメソッド -->
   <span class="name">
     <a href="/users/<%= tweet.user_id %>">
       <span>投稿者</span><%= tweet.user.nickname %>
+      <!-- 投稿者のニックネームが表示されるようにアソシエーションを利用して設定 -->
     </a>
   </span>
 </div>
