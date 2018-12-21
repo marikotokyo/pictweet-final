@@ -3,6 +3,7 @@
   <head>
     <title>Pictweet</title>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+    <!-- ここでstylesheets/application.cssを読み込んでいる -->
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
     <script type="text/javascript">
@@ -26,11 +27,14 @@
       <div class="header__bar row">
         <h1 class="grid-6"><a href="/">PicTweet</a></h1>
         <% if user_signed_in? %>
+        <!-- ユーザーがサインインしていればログアウトと投稿するボタンを表示 -->
           <div class="user_nav grid-6">
             <span><%= current_user.nickname %>
+              <!-- ログイン中のユーザーのニックネーム -->
             <ul class="user__info">
               <li>
                 <a href="/users/<%= current_user.id %>">マイページ</a>
+                <!-- /users/:idの:idの部分にログイン中のユーザーのidをRubyタグで -->
                 <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
               </li>
             </ul>
@@ -38,6 +42,7 @@
             <a class="post" href="/tweets/new">投稿する</a>
           </div>
         <% else %>
+        <!-- ログインしていなければ、ログインボタンと新規登録ボタンを表示 -->
           <div class="grid-6">
             <%= link_to "ログイン", new_user_session_path, class: 'post' %>
             <%= link_to "新規登録", new_user_registration_path, class: 'post' %>
@@ -47,6 +52,7 @@
     </header>
 
     <%= yield %>
+    <!-- ここにそれぞれにビューファイルが置き換えられる -->
 
     <footer>
       <p>

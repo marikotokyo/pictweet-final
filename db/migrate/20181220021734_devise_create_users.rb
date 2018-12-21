@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class DeviseCreateUsers < ActiveRecord::Migration[5.2]
+class DeviseCreateUsers < ActiveRecord::Migration[5.2] #$ rails g devise userで作成される→$ rake db:migrateでマイグレーションファイルを実行するとusersテーブルが作成される
   def change
     create_table :users do |t|
       ## Database authenticatable

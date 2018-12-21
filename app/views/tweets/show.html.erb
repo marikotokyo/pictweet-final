@@ -23,6 +23,7 @@
   <div class="container">
     <!-- ここからフォーム -->
     <% if current_user %>
+    <!-- ログインしていない状態ではコメントフォームを出さないように -->
       <%= form_tag("/tweets/#{@tweet.id}/comments", method: :post) do %>
       <!-- paramsの中にコメントと結びつくツイートのidも含まれるようになる -->
         <textarea cols="30" name="text" placeholder="コメントする" rows="2"></textarea>
@@ -34,7 +35,7 @@
       <% if @comments %>
       <!-- コメントが空だった時でもエラーが起こらないようにしている -->
         <% @comments.each do |comment| %>
-        <!-- #@commentsには全てのコメントが入っているのでeach文で分解して表示 -->
+        <!-- @commentsには全てのコメントが入っているのでeach文で分解して表示 -->
           <p>
             <strong><%= link_to comment.user.nickname, "/users/#{comment.user_id}" %>：</strong>
             <!-- コメントしたユーザー名をクリックするとそのユーザーページに飛ぶリンク -->

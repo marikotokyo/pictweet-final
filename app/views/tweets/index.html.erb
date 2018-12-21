@@ -3,6 +3,7 @@
     <%= render partial: "tweet", locals: { tweet: tweet } %>
   <% end %>
   <%= paginate(@tweets) %>
+  <!-- ページネーションのリンクを表示するメソッド。引数にはコントローラで定義した変数を指定する。 -->
 </div>
 
 <!-- renderメソッドのlocalsオプション{ tweet: tweet } の右側の tweet はeachメソッド内の変数としてのtweetでtweetのインスタンスのこと。左側の tweet は部分テンプレート内での変数の名前を表している。 -->
