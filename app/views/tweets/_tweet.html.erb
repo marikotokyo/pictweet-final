@@ -8,7 +8,7 @@
       </li>
       <% if user_signed_in? && current_user.id == tweet.user_id %>
  <!-- 自分が投稿したツイートでないと削除ボタンが表示されないようにする -->
- <!-- <% if current_user.id == tweet.user_id %>だけだと、ログインしていないときのcurrent_userはnillなのでそれに対して.idとしてもそんなメソッドないよというエラーになる。そのためにまずユーザーがサインインしているか確かめる -->
+<!-- < if current_user.id == tweet.user_id >だけだと、ログインしていないときのcurrent_userはnillなのでそれに対して.idとしてもそんなメソッドないよというエラーになる。そのためにまずユーザーがサインインしているか確かめる -->
  <!-- if文は左から判定されるのでuser_singed_inがfalseならその時点で削除ボタンは表示されなくなる -->
       <li>
         <%= link_to '編集', "/tweets/#{tweet.id}/edit", method: :get %>
